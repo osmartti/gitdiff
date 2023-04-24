@@ -19,14 +19,14 @@ paths=(
    'project/folder/methods/removeDuplicates.py'
    'project/folder/test/removeDuplicates.py'
 )
-wget https://www.iltalehti.fi/rss/uutiset.xml -q
+wget https://www.iltalehti.fi/rss/uutiset.xml -q -O news.xml
 
 xmlgetnext () {
    local IFS='>'
    read -d '<' TAG VALUE
 }
 
-cat ./uutiset.xml | while xmlgetnext ; do
+cat ./news.xml | while xmlgetnext ; do
    case $TAG in
       'item')
          title=''
@@ -89,4 +89,4 @@ do
 done < read.txt
 
 rm ./read.txt
-rm ./uutiset.xml
+rm ./news.xml
